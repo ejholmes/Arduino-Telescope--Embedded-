@@ -2,10 +2,10 @@
 #ifndef Telescope_h
 #define Telescope_
 
-#define WEST 2
-#define EAST 3
-#define NORTH 4
-#define SOUTH 5
+#define EAST 2
+#define SOUTH 3
+#define WEST 4
+#define NORTH 5
 
 #include <inttypes.h>
 #include <avr/io.h>
@@ -21,7 +21,7 @@ class Telescope
   public:
     Telescope(void);
     void interpretCommand(Messenger *message);
-    void moveAxis(TelescopeAxes axis, unsigned long rate);
+    void moveAxis(int dir);
   private:
 };
 

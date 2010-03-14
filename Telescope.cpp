@@ -22,21 +22,45 @@ void Telescope::interpretCommand(Messenger *message)
   char command = message->readChar();
   
   switch(command){
-    case 'D':
-      moveAxis(DECLINATION, message->readLong());
+    case 'N':
+      moveAxis(NORTH);
       break;
-    case 'R':
-      moveAxis(RA, message->readLong());
+    case 'E':
+      moveAxis(EAST);
+      break;
+    case 'S':
+      moveAxis(SOUTH);
+      break;
+    case 'W':
+      moveAxis(WEST);
+      break;
+    case 'H':
+      moveAxis(0);
       break;
   }
 }
 
-void Telescope::moveAxis(TelescopeAxes axis)
+void Telescope::moveAxis(int dir)
 {
-  switch(axis){
-    case RA:
+  digitalWrite(NORTH, LOW);
+  digitalWrite(EAST, LOW);
+  digitalWrite(SOUTH, LOW);
+  digitalWrite(WEST, LOW);
+  
+  switch(dir){
+    case NORTH:
+      digitalWrite(NORTH, HIGH);
       break;
-    case DECLINATION:
+    case EAST:
+      digitalWrite(EAST, HIGH);
+      break;
+    case SOUTH:
+      digitalWrite(SOUTH, HIGH);
+      break;
+    case WEST:
+      digitalWrite(WEST, HIGH);
+      break;
+    default:
       break;
   }
 }
