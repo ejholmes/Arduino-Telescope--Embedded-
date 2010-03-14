@@ -1,6 +1,8 @@
 #include "Messenger.h"
+#include "Telescope.h"
 
 Messenger message = Messenger();
+Telescope telescope = Telescope();
 
 void setup(){
   Serial.begin(9600);
@@ -11,6 +13,7 @@ void setup(){
 }
 
 void messageCompleted(){
+  telescope.interpretCommand(&message);
 }
 
 void loop(){
