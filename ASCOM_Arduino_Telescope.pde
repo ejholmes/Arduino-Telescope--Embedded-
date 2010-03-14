@@ -8,6 +8,8 @@ void setup(){
   Serial.begin(9600);
   Serial.flush();
   
+  Serial.println("READY");
+  
   message.attach(messageCompleted);
   
 }

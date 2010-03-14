@@ -22,7 +22,9 @@ class Telescope
     Telescope(void);
     void interpretCommand(Messenger *message);
     void moveAxis(int dir);
+    bool connect(int major, int minor);
   private:
+    bool connected;
 };
 
 #endif

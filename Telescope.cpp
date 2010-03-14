@@ -8,6 +8,8 @@ extern "C" {
 #include "WProgram.h"
 #include "Telescope.h"
 
+bool connected = false;
+
 Telescope::Telescope(void)
 {
   pinMode(NORTH, OUTPUT);
@@ -37,6 +39,23 @@ void Telescope::interpretCommand(Messenger *message)
     case 'H':
       moveAxis(0);
       break;
+    case 'C':
+      connect(message->readInt(), message->readInt());
+      break;
+  }
+}
+
+bool Telescope::connect(int major, int minor)
+{
+  if(major == 127 && minor == 15) {
+    connected = true;
+    Serial.println("OK");
+    return true;
+  }
+  else {
+    connected = false;
+    Serial.println("NOPE");
+    return false;
   }
 }
 
